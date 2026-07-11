@@ -1,16 +1,20 @@
-# Future of Data: Quantum Analytics
+# Interactive Hybrid Quantum-Classical Data Analytics Platform
 
-![Project Banner](https://img.shields.io/badge/Project-Quantum%20Analytics-blueviolet?style=for-the-badge&logo=python&logoColor=white)
+![Project Banner](https://img.shields.io/badge/Capstone-Quantum%20Analytics-blueviolet?style=for-the-badge&logo=python&logoColor=white)
 
-A portfolio-style project that explores how classical and quantum approaches can be compared for data science workflows. The app combines Streamlit, scikit-learn, pandas, and Qiskit to present interactive modules for exploration, machine learning, quantum circuits, and performance comparison.
+## Executive Summary
+
+This project develops an interactive **Quantum Analytics Platform** integrating Streamlit, Pandas, scikit-learn, and Qiskit. The app enables classical data exploration, preprocessing, and model comparisons alongside quantum circuit simulations and variational classifiers. Users can visually compare classical machine learning models vs. quantum-enhanced methods, illustrating performance differences. The platform demonstrates how quantum computing can augment traditional data science workflows by providing a side-by-side evaluation of classical and quantum techniques.
 
 ## What this project demonstrates
 
 - Classical data exploration and preprocessing workflows
-- Classical machine learning model comparisons
-- Quantum circuit simulation and visualization
+- Classical machine learning model comparisons (Random Forest, SVM, Logistic Regression)
+- Quantum circuit simulation and visualization using Qiskit
 - Quantum machine learning concepts such as variational classifiers
-- Side-by-side comparison of classical vs quantum methods
+- Side-by-side comparative analysis of classical vs quantum methods
+- Full-stack interactive web application development
+- Performance metrics and benchmarking
 
 ## Project structure
 
