@@ -1,5 +1,8 @@
 # Future of Data: Quantum Analytics
 
+Intern Id: CITS2603
+---
+
 ![Project Banner](https://img.shields.io/badge/Project-Quantum%20Analytics-blueviolet?style=for-the-badge&logo=python&logoColor=white)
 
 A portfolio-style project that explores how classical and quantum approaches can be compared for data science workflows. The app combines Streamlit, scikit-learn, pandas, and Qiskit to present interactive modules for exploration, machine learning, quantum circuits, and performance comparison.
