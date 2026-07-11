@@ -52,7 +52,3 @@ Add a screenshot of the app here once you have one, for example:
 - scikit-learn
 - pandas
 - matplotlib/seaborn
-
-## Portfolio note
-
-This project is designed to showcase applied AI and quantum computing concepts in a readable, interactive format for interviews, demos, and GitHub presentations.
