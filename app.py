@@ -15,7 +15,8 @@ st.set_page_config(
 )
 
 # Custom CSS for quantum aesthetic
-st.markdown("""
+st.markdown(
+    """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
 
@@ -121,16 +122,27 @@ st.markdown("""
         border-color: #00d4ff22;
     }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown('<div class="main-title">⚛ FUTURE OF DATA: QUANTUM ANALYTICS</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">[ EXPLORING CLASSICAL vs QUANTUM COMPUTING FOR DATA SCIENCE ]</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="main-title">⚛ FUTURE OF DATA: QUANTUM ANALYTICS</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<div class="subtitle">[ EXPLORING CLASSICAL vs QUANTUM COMPUTING FOR DATA SCIENCE ]</div>',
+    unsafe_allow_html=True,
+)
 
 st.markdown("---")
-st.markdown("""
+st.markdown(
+    """
 This project presents an interactive comparison between classical machine learning and emerging quantum computing approaches for analytics workflows.
 It is built as a portfolio-ready Streamlit app that highlights both technical depth and clear storytelling for recruiters, collaborators, and curious visitors.
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 st.markdown("---")
 
@@ -138,51 +150,75 @@ st.markdown("---")
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="metric-card">
         <div class="metric-value">5</div>
         <div class="metric-label">Analysis Modules</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""",
+        unsafe_allow_html=True,
+    )
 
 with col2:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="metric-card">
         <div class="metric-value">Qiskit</div>
         <div class="metric-label">Quantum Engine</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""",
+        unsafe_allow_html=True,
+    )
 
 with col3:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="metric-card">
         <div class="metric-value">ML + QML</div>
         <div class="metric-label">Model Types</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""",
+        unsafe_allow_html=True,
+    )
 
 with col4:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="metric-card">
         <div class="metric-value">Real-time</div>
         <div class="metric-label">Simulation</div>
-    </div>""", unsafe_allow_html=True)
+    </div>""",
+        unsafe_allow_html=True,
+    )
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 # Module overview
-st.markdown('<div class="section-header">📡 Project Modules</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="section-header">📡 Project Modules</div>', unsafe_allow_html=True
+)
 
 for module in PROJECT_MODULES:
-    st.markdown(f"""
+    st.markdown(
+        f"""
     <div style="background:#0d1f3c; border:1px solid #00d4ff22; border-radius:10px; padding:1rem; margin:0.5rem 0; display:flex; align-items:flex-start; gap:1rem;">
         <span style="font-size:1.8rem">{module.icon}</span>
         <div>
             <div style="font-family:'Rajdhani',sans-serif; color:#e2e8f0; font-size:1.1rem; font-weight:600;">{module.name} &nbsp; {get_module_tag_html(module.category)}</div>
             <div style="color:#64748b; font-size:0.88rem; margin-top:0.3rem;">{module.description}</div>
         </div>
-    </div>""", unsafe_allow_html=True)
+    </div>""",
+        unsafe_allow_html=True,
+    )
 
 st.markdown("<br>", unsafe_allow_html=True)
-st.markdown('<div class="section-header">🚀 Navigate the App</div>', unsafe_allow_html=True)
-st.info("Use the **sidebar** (←) to navigate between modules. Each page is self-contained and interactive.")
+st.markdown(
+    '<div class="section-header">🚀 Navigate the App</div>', unsafe_allow_html=True
+)
+st.info(
+    "Use the **sidebar** (←) to navigate between modules. Each page is self-contained and interactive."
+)
 
 st.markdown("---")
-st.markdown('<p style="text-align:center; color:#334155; font-size:0.8rem; font-family:\'Share Tech Mono\',monospace;">Future of Data: Quantum Analytics · Built with Qiskit, scikit-learn & Streamlit</p>', unsafe_allow_html=True)
+st.markdown(
+    "<p style=\"text-align:center; color:#334155; font-size:0.8rem; font-family:'Share Tech Mono',monospace;\">Future of Data: Quantum Analytics · Built with Qiskit, scikit-learn & Streamlit</p>",
+    unsafe_allow_html=True,
+)
