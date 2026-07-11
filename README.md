@@ -43,7 +43,6 @@ Add a screenshot of the app here once you have one, for example:
 
 ![App Screenshot](assets/screenshot.png)
 
-> If you add a screenshot file later, place it in the assets folder and update this path.
 
 ## Tech stack
 
