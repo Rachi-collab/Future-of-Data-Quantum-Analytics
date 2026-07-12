@@ -49,6 +49,10 @@ Add a screenshot of the app here once you have one, for example:
 
 ![App Screenshot](assets/screenshot.png)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e4186cd7e82c4c50d07594f71cbc871e49848ecb
 ## Tech stack
 
 - Python
@@ -57,7 +61,3 @@ Add a screenshot of the app here once you have one, for example:
 - scikit-learn
 - pandas
 - matplotlib/seaborn
-
-## Portfolio note
-
-This project is designed to showcase applied AI and quantum computing concepts in a readable, interactive format for interviews, demos, and GitHub presentations.
