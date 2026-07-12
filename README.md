@@ -1,5 +1,7 @@
 # Interactive Hybrid Quantum-Classical Data Analytics Platform
 
+**Intern ID:** CITS2603
+
 ![Project Banner](https://img.shields.io/badge/Capstone-Quantum%20Analytics-blueviolet?style=for-the-badge&logo=python&logoColor=white)
 
 ## Executive Summary
@@ -46,8 +48,6 @@ This project develops an interactive **Quantum Analytics Platform** integrating 
 Add a screenshot of the app here once you have one, for example:
 
 ![App Screenshot](assets/screenshot.png)
-
-> If you add a screenshot file later, place it in the assets folder and update this path.
 
 ## Tech stack
 
