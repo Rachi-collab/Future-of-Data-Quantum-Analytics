@@ -17,7 +17,7 @@ import copy, time
 
 from src.data_utils import generate_dataset, AVAILABLE_DATASETS
 from src.classical_ml import train_and_evaluate, CLASSIFIERS
-from src.quantum_ml import VQClassifier
+from src.quantum_ml import VQClassifier, QSVClassifier
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(page_title="Comparative Analysis", page_icon="📊", layout="wide")
@@ -35,7 +35,7 @@ st.markdown("""
 </style>""", unsafe_allow_html=True)
 
 st.title("📊 Comparative Analysis")
-st.caption("Side-by-side benchmarking: Classical ML vs Quantum VQC.")
+st.caption("Side-by-side benchmarking: Classical ML vs Quantum Classifiers (VQC & QSVC).")
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -87,6 +87,20 @@ if run_btn:
             "type":           "Quantum",
         }
 
+    # Quantum QSVC
+    with st.spinner("Training Quantum QSVC (may take ~5s)…"):
+        qsvc = QSVClassifier(random_state=42)
+        qsvc.fit(X_tr, y_tr)
+        t0 = time.perf_counter()
+        y_pred_qsvc = qsvc.predict(X_te)
+        qsvc_infer_ms = (time.perf_counter() - t0) * 1000
+        results["QSVC (Quantum)"] = {
+            "accuracy":       accuracy_score(y_te, y_pred_qsvc),
+            "train_time_ms":  qsvc.train_time_ms_,
+            "infer_time_ms":  qsvc_infer_ms,
+            "type":           "Quantum",
+        }
+
     df_res = pd.DataFrame(results).T.reset_index().rename(columns={"index": "Model"})
     df_res["accuracy"]      = df_res["accuracy"].astype(float)
     df_res["train_time_ms"] = df_res["train_time_ms"].astype(float)
@@ -113,7 +127,7 @@ if run_btn:
         bars = ax.barh(models, df_res["accuracy"].values, color=colors, edgecolor="#0d1f3c", height=0.5)
         for bar, v in zip(bars, df_res["accuracy"].values):
             ax.text(v + 0.005, bar.get_y() + bar.get_height()/2,
-                    f"{v:.4f}", va="center", fontsize=9, color="#c0d0e0")
+                     f"{v:.4f}", va="center", fontsize=9, color="#c0d0e0")
         ax.axvline(0.5, color="#f87171", linestyle="--", linewidth=1, alpha=0.5, label="Chance")
         ax.set_xlim(0, 1.1)
         ax.set_xlabel("Test Accuracy")
@@ -132,7 +146,7 @@ if run_btn:
         bars = ax.barh(models, df_res["train_time_ms"].values, color=colors, edgecolor="#0d1f3c", height=0.5)
         for bar, v in zip(bars, df_res["train_time_ms"].values):
             ax.text(v + 1, bar.get_y() + bar.get_height()/2,
-                    f"{v:.0f} ms", va="center", fontsize=9, color="#c0d0e0")
+                     f"{v:.0f} ms", va="center", fontsize=9, color="#c0d0e0")
         ax.set_xlabel("Training Time (ms)")
         ax.set_title("Training Time by Model", color="#67e8f9", fontsize=10)
         ax.grid(axis="x", alpha=0.3)
@@ -184,16 +198,16 @@ if run_btn:
     best_model = df_res.loc[df_res["accuracy"].idxmax(), "Model"]
     fastest    = df_res.loc[df_res["train_time_ms"].idxmin(), "Model"]
     vqc_acc    = results["VQC (Quantum)"]["accuracy"]
+    qsvc_acc   = results["QSVC (Quantum)"]["accuracy"]
     best_cl_acc = max(v["accuracy"] for k,v in results.items() if v["type"]=="Classical")
-    gap        = vqc_acc - best_cl_acc
-
+    
     insights = [
         f"🏆 **Best accuracy overall:** {best_model} ({df_res.loc[df_res['accuracy'].idxmax(), 'accuracy']:.4f})",
         f"⚡ **Fastest to train:** {fastest} ({df_res.loc[df_res['train_time_ms'].idxmin(), 'train_time_ms']:.1f} ms)",
-        f"⚛️ **VQC accuracy:** {vqc_acc:.4f}  |  Best classical: {best_cl_acc:.4f}  |  Gap: {gap:+.4f}",
-        "📈 Classical models win on **speed** — VQC sim is CPU-bound; real quantum hardware changes this.",
-        "🔬 On **small, noisy datasets** (~100 samples), quantum models can match classical performance.",
-        "🚀 Quantum advantage expected at scale with fault-tolerant hardware and larger feature spaces.",
+        f"⚛️ **Quantum VQC accuracy:** {vqc_acc:.4f}  |  **Quantum QSVC accuracy:** {qsvc_acc:.4f}  |  Best classical: {best_cl_acc:.4f}",
+        "📈 Classical models win on **speed** — VQC and QSVC simulation is CPU-bound; real quantum hardware changes this.",
+        "🔬 On **small, noisy datasets** (~100 samples), quantum models (especially QSVC) can match or sometimes exceed classical performance.",
+        "🚀 Quantum advantage is expected at scale with fault-tolerant hardware and larger feature spaces.",
     ]
     for ins in insights:
         st.markdown(ins)
@@ -210,6 +224,7 @@ else:
     - **SVM (RBF kernel)** — maximal-margin hyperplane
     - **Logistic Regression** — linear probabilistic classifier
     - **VQC (Quantum)** — Variational Quantum Classifier via Qiskit statevector simulation
+    - **QSVC (Quantum)** — Quantum Support Vector Classifier via Quantum Kernel Estimation
 
     Metrics compared: **test accuracy**, **training time**, and **inference time**.
 

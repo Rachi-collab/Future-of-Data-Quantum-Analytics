@@ -160,6 +160,51 @@ class VQClassifier(BaseEstimator, ClassifierMixin):
         return accuracy_score(y, self.predict(X))
 
 
+class QSVClassifier(BaseEstimator, ClassifierMixin):
+    """
+    Quantum Support Vector Classifier (QSVC) using Quantum Kernel Estimation.
+    """
+
+    def __init__(self, random_state: int = 42):
+        self.random_state = random_state
+        self.scaler_ = MinMaxScaler(feature_range=(0, np.pi))
+        self.svc_ = None
+        self.X_train_sc_ = None
+        self.train_time_ms_ = 0.0
+
+    def fit(self, X, y):
+        from sklearn.svm import SVC
+        t0 = time.perf_counter()
+        
+        # Scale data to [0, pi] for feature mapping
+        X_sc = self.scaler_.fit_transform(X)
+        self.X_train_sc_ = X_sc
+        
+        # Compute training kernel matrix K(X, X)
+        K_train = quantum_kernel_matrix(X_sc, X_sc)
+        
+        self.svc_ = SVC(kernel="precomputed", probability=True, random_state=self.random_state)
+        self.svc_.fit(K_train, y)
+        
+        self.train_time_ms_ = (time.perf_counter() - t0) * 1000
+        self.classes_ = self.svc_.classes_
+        return self
+
+    def predict(self, X):
+        X_sc = self.scaler_.transform(X)
+        # Compute test kernel matrix K(X_test, X_train)
+        K_test = quantum_kernel_matrix(self.X_train_sc_, X_sc)
+        return self.svc_.predict(K_test)
+
+    def predict_proba(self, X):
+        X_sc = self.scaler_.transform(X)
+        K_test = quantum_kernel_matrix(self.X_train_sc_, X_sc)
+        return self.svc_.predict_proba(K_test)
+
+    def score(self, X, y):
+        return accuracy_score(y, self.predict(X))
+
+
 # ---------------------------------------------------------------------------
 # Quantum circuit demos (used in the Circuits page)
 # ---------------------------------------------------------------------------

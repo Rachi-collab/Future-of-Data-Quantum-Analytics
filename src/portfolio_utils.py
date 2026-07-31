@@ -31,7 +31,7 @@ PROJECT_MODULES = [
     ProjectModule(
         icon="🌀",
         name="Quantum ML",
-        description="Implement a Variational Quantum Classifier (VQC) and compare against classical counterparts.",
+        description="Implement a Variational Quantum Classifier (VQC) and a Quantum Support Vector Classifier (QSVC) using Quantum Kernels.",
         category="quantum",
     ),
     ProjectModule(
