@@ -1,7 +1,5 @@
 # Interactive Hybrid Quantum-Classical Data Analytics Platform
 
-**Intern ID:** CITS2603
-
 ![Project Banner](https://img.shields.io/badge/Capstone-Quantum%20Analytics-blueviolet?style=for-the-badge&logo=python&logoColor=white)
 
 ## Executive Summary
